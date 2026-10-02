@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface-sunken: #EFEDE6;
+  --line: #E1DDD2;
+  --ink-hi: #14213D;
+  --ink-mid: #4A5568;
+  --ink-lo: #8A94A6;
+  --indigo: #1F3A8A;
+  --ghats: #0E7C66;
+  --terracotta: #C2512D;
+  --turmeric: #E8A317;
+  --crimson: #C62839;
+  --sky: #2B7FD1;
+  --ticker-bg: #0F172A;
+}
+
+@layer base {
+  body {
+    background-color: var(--paper);
+    color: var(--ink-hi);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', system-ui, sans-serif;
+  }
+}
+
+/* Civic Survey Grid Background (40px, 3% opacity) */
+.survey-grid-bg {
+  background-color: #F7F5F0;
+  background-image: 
+    linear-gradient(to right, rgba(20, 33, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 33, 61, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Topographic Contour Texture for Hero Cards */
+.contour-bg {
+  background-color: #FFFFFF;
+  background-image: radial-gradient(circle at 100% 100%, rgba(14, 124, 102, 0.04) 0%, transparent 60%),
+                    radial-gradient(circle at 0% 0%, rgba(31, 58, 138, 0.03) 0%, transparent 50%);
+}
+
+/* Custom Scrollbars in Civic Atlas Palette */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #EFEDE6;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8C2B4;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8A94A6;
+}
+
+/* MapLibre Light Theme Overrides (CARTO Positron) */
+.maplibregl-popup-content {
+  background: #FFFFFF !important;
+  color: #14213D !important;
+  border: 1px solid #E1DDD2 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px -5px rgba(20, 33, 61, 0.15) !important;
+  padding: 12px 14px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: #FFFFFF !important;
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: #FFFFFF !important;
+}
+.maplibregl-popup-close-button {
+  color: #8A94A6 !important;
+  padding: 4px 8px !important;
+}
+.maplibregl-popup-close-button:hover {
+  color: #14213D !important;
+  background: transparent !important;
+}
+
+/* Tabular Numbers */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Print Styles for Executive Report */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #14213D !important;
+  }
+  .no-print, header, aside, .status-ticker, .demo-banner, .btn-download {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+}

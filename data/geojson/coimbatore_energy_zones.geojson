@@ -1,0 +1,116 @@
+{
+  "type": "FeatureCollection",
+  "name": "Coimbatore_Energy_Zones",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "ZONE_METRO",
+        "name": "Coimbatore Metro Central",
+        "substation_type": "230/110kV Tatabad & Gandhipuram Substation",
+        "capacity_mw": 320.0,
+        "primary_consumer": "Commercial & High-Density Mixed Urban"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.9450, 11.0000],
+            [76.9800, 11.0000],
+            [76.9800, 11.0350],
+            [76.9450, 11.0350],
+            [76.9450, 11.0000]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "ZONE_NORTH_IT",
+        "name": "Coimbatore North (Saravanampatti IT)",
+        "substation_type": "110/33kV Saravanampatti Substation",
+        "capacity_mw": 260.0,
+        "primary_consumer": "IT Tech Parks, SEZs & Universities"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.9600, 11.0350],
+            [77.0300, 11.0350],
+            [77.0300, 11.1000],
+            [76.9600, 11.1000],
+            [76.9600, 11.0350]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "ZONE_EAST_IND",
+        "name": "Coimbatore East (Peelamedu & CODISSIA)",
+        "substation_type": "230/110kV Eachanari / Irugur Grid Feed",
+        "capacity_mw": 380.0,
+        "primary_consumer": "Industrial Foundries, Textile Mills & Airport"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.0000, 11.0100],
+            [77.0800, 11.0100],
+            [77.0800, 11.0650],
+            [77.0000, 11.0650],
+            [77.0000, 11.0100]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "ZONE_SOUTH_RES",
+        "name": "Coimbatore South (Singanallur & Ukkadam)",
+        "substation_type": "110/33kV Singanallur & Ukkadam Substation",
+        "capacity_mw": 280.0,
+        "primary_consumer": "Dense Residential & Transit Hubs"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.9500, 10.9500],
+            [77.0600, 10.9500],
+            [77.0600, 11.0100],
+            [76.9500, 11.0100],
+            [76.9500, 10.9500]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone_id": "ZONE_KURICHI_SIDCO",
+        "name": "Kurichi SIDCO Industrial Zone",
+        "substation_type": "110/22kV SIDCO Industrial Estate Substation",
+        "capacity_mw": 240.0,
+        "primary_consumer": "Heavy Engineering, Pumps & Motors Manufacturing"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.9400, 10.9000],
+            [77.0000, 10.9000],
+            [77.0000, 10.9600],
+            [76.9400, 10.9600],
+            [76.9400, 10.9000]
+          ]
+        ]
+      }
+    }
+  ]
+}

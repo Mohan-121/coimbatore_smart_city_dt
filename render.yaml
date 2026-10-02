@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: coimbatore-twin-backend
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt && python scripts/init_db.py && python scripts/seed_coimbatore_geo.py && python ml/training/train_traffic.py && python ml/training/train_energy.py"
+    startCommand: "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: coimbatore-twin-db
+          property: connectionString
+
+databases:
+  - name: coimbatore-twin-db
+    databaseName: coimbatore_twin
+    user: postgres
+    plan: free

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coimbatore Smart City Digital Twin — Features Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #ef4444;
+      --accent-purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-cyan);
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 0.75rem 1.4rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    }
+
+    .btn-download:hover {
+      background: linear-gradient(135deg, #0369a1, #075985);
+      transform: translateY(-1px);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      border-left: 4px solid var(--accent-cyan);
+      padding-left: 0.75rem;
+      margin: 2.5rem 0 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p, li {
+      color: #d1d5db;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      margin-right: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .badge-live {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .badge-sim {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .badge-hist {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      font-size: 1.2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      border: 1px solid var(--card-border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #1e293b;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    td {
+      background-color: rgba(17, 24, 39, 0.5);
+    }
+
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    code {
+      background: #1e293b;
+      color: var(--accent-cyan);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.35rem;
+    }
+
+    pre {
+      background: #0d1117;
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      color: #e6edf3;
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .pill-item {
+      background: #1a2234;
+      border: 1px solid #28354e;
+      border-radius: 0.75rem;
+      padding: 1rem;
+    }
+
+    .pill-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .pill-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff;
+        color: #111827;
+        padding: 0;
+      }
+      .btn-download {
+        display: none;
+      }
+      .feature-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      th {
+        background-color: #f3f4f6;
+        color: #111827;
+      }
+      td {
+        background-color: #ffffff;
+        color: #1f2937;
+      }
+      h1, h2, h3 {
+        color: #111827;
+      }
+      code, pre {
+        background: #f8fafc;
+        color: #0f172a;
+        border: 1px solid #e2e8f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Coimbatore Smart City Digital Twin</h1>
+        <div class="subtitle">Predictive Traffic, Energy & Urban Intelligence Platform</div>
+        <div class="meta">Coimbatore, Tamil Nadu, India • Technical & Operational Documentation • v1.0.0</div>
+      </div>
+      <div>
+        <button class="btn-download" onclick="window.print()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Print / Save as PDF
+        </button>
+      </div>
+    </header>
+
+    <div class="pill-grid">
+      <div class="pill-item">
+        <div class="pill-title">Monitored Corridors</div>
+        <div class="pill-val">5 Arterials</div>
+      </div>
+      <div class="pill-item">
+        <div class="pill-title">Predictive Horizons</div>
+        <div class="pill-val">15, 30, 60, 120m</div>
+      </div>
+      <div class="pill-item">
+        <div class="pill-title">TANGEDCO Grid Cap</div>
+        <div class="pill-val">1,480 MW</div>
+      </div>
+      <div class="pill-item">
+        <div class="pill-title">Atmospheric Feed</div>
+        <div class="pill-val">Open-Meteo Live</div>
+      </div>
+    </div>
+
+    <h2>1. Executive Summary</h2>
+    <p>
+      The <strong>Coimbatore Smart City Digital Twin</strong> is a cyber-physical urban intelligence platform representing the key physical, infrastructural, and temporal dynamics of Coimbatore, Tamil Nadu, India. The platform models urban flow across three core pillars:
+    </p>
+    <ul>
+      <li><strong>Intelligent Mobility & Traffic Dynamics</strong>: Real-time arterial tracking, multi-horizon ML forecasting, TreeSHAP explainability, and downstream spillover propagation.</li>
+      <li><strong>Energy Grid & Power Demand</strong>: Substation demand monitoring across 5 distribution zones with 24-hour predictive load curves.</li>
+      <li><strong>Environmental Intelligence</strong>: Live atmospheric air quality index (AQI) tracking and localized traffic emission correlation modeling.</li>
+    </ul>
+
+    <h2>2. Key Feature Pillars</h2>
+
+    <div class="feature-card">
+      <h3>
+        <span>1. Interactive 2.5D/3D Digital Twin Map</span>
+        <span class="badge badge-hist">GIS Engine</span>
+      </h3>
+      <p>Built with MapLibre GL JS and Deck.gl, featuring 2.5D perspective rendering (45° pitch, -15° bearing) centered over Coimbatore [76.9850, 11.0250].</p>
+      <ul>
+        <li><strong>Arterial Coverage</strong>: Avinashi Road (NH 544), Trichy Road (NH 81), Sathy Road (NH 948), Mettupalayam Road (NH 181), and Pollachi Road (NH 83).</li>
+        <li><strong>Congestion Glow Shading</strong>: Corridors dynamically glow in Emerald Green (&lt;30), Amber (30-60), Orange (60-85), or Red (&ge;85).</li>
+        <li><strong>Click-to-Inspect</strong>: Interactively select any road segment to view real-time speeds, vehicle counts, and multi-horizon forecasts.</li>
+        <li><strong>Pulsing Incident Markers</strong>: Visual alerts on map for road accidents and construction closures.</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>2. Traffic Intelligence & Multi-Horizon ML Forecasting</span>
+        <span class="badge badge-sim">LightGBM</span>
+      </h3>
+      <p>Uses Greenshields density equilibrium scoring combined with LightGBM regressors to forecast congestion levels across 4 temporal horizons:</p>
+      <ul>
+        <li><strong>15 Minutes</strong>: Intersection shockwave warning</li>
+        <li><strong>30 Minutes</strong>: Dynamic traffic signal timing adaptation</li>
+        <li><strong>60 Minutes</strong>: Regional route diversion recommendations</li>
+        <li><strong>120 Minutes</strong>: Municipal shift management and incident clearance</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>3. Explainable AI (XAI) Cause Attribution Engine</span>
+        <span class="badge badge-sim">TreeSHAP</span>
+      </h3>
+      <p>Decomposes forward predictions into normalized percentage contributions across four distinct municipal root causes:</p>
+      <ul>
+        <li><strong>Peak-Hour Commuter Surge</strong>: Morning and evening rush-hour volume.</li>
+        <li><strong>Upstream Junction Queue Spillover</strong>: Congestion shockwaves propagating from adjacent intersections.</li>
+        <li><strong>Active Incident / Lane Capacity Loss</strong>: Flyover construction pier erection or multi-vehicle collisions.</li>
+        <li><strong>Weather & Rain Conditions</strong>: Wet pavement and visibility throttling.</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>4. Downstream Spillover & Carbon Emission Engine</span>
+        <span class="badge badge-sim">EPA VSP Model</span>
+      </h3>
+      <p>Evaluates network diversion when a corridor bottlenecks, calculating queue growth and environmental penalties:</p>
+      <ul>
+        <li><strong>Alternate Corridor Diversion</strong>: Calculates volume rerouted (e.g. from Avinashi Road to Trichy Road via Sungam Bypass).</li>
+        <li><strong>Wasted Fuel Calculation</strong>: Estimates excess liters of fuel burned during vehicular idling.</li>
+        <li><strong>Carbon Footprint Delta</strong>: Excess kg of CO2 emitted per hour of delay.</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>5. Electrical Grid Digital Twin (TANGEDCO)</span>
+        <span class="badge badge-sim">XGBoost 24h</span>
+      </h3>
+      <p>Monitors 5 Coimbatore distribution substations (Metro Central, North IT Saravanampatti, East Industrial Peelamedu, South Residential, Kurichi SIDCO).</p>
+      <ul>
+        <li><strong>Grid Telemetry</strong>: Active power (MW), reactive power (MVAR), grid frequency (50.02 Hz), and grid capacity utilization against 1,480 MW total capacity.</li>
+        <li><strong>24-Hour Forecast Curve</strong>: Hourly load curve with shaded 95% confidence intervals and peak alerts (e.g. evening cooling surge).</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>6. Environmental Intelligence & Live AQI</span>
+        <span class="badge badge-live">Open-Meteo Live</span>
+      </h3>
+      <p>Direct atmospheric ingestion for Coimbatore coordinates (11.0168, 76.9558):</p>
+      <ul>
+        <li><strong>Tracked Parameters</strong>: AQI, PM2.5, PM10, NO2, CO, temperature, humidity, wind, and rain.</li>
+        <li><strong>Traffic Correlation</strong>: Automatically computes the percentage share of particulate pollution generated by stop-and-go vehicular idling.</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>7. 'What-If' Urban Scenario Simulator</span>
+        <span class="badge badge-sim">Scenario Sandbox</span>
+      </h3>
+      <p>Interactive policy sandbox for modeling disruptions before execution:</p>
+      <ul>
+        <li><strong>Traffic Scenarios</strong>: Road / Flyover Closures (10-90% restriction), Volume Surges (0.8x-2.0x), and Monsoon Downpours.</li>
+        <li><strong>Energy Scenarios</strong>: Heatwave Spikes (+1°C to +8°C), EV Fleet Additions (0-20,000 EVs), and Solar Penetration.</li>
+        <li><strong>Comparative Deltas</strong>: Side-by-side Baseline vs. Simulated deltas with automatic municipal recommendations.</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>8. Grounded AI Urban Assistant</span>
+        <span class="badge badge-live">RAG Assistant</span>
+      </h3>
+      <p>Natural language municipal assistant operating strictly on live database telemetry with zero hallucination. Answers queries on traffic, energy peaks, AQI compliance, and active alerts with concrete citations.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>9. 1-Click Presentation Demo Mode</span>
+        <span class="badge badge-sim">Interactive Demos</span>
+      </h3>
+      <p>Bottom control bar with 1-click presets for live demonstrations: <em>Simulate TIDEL Park Accident</em>, <em>Trigger Rainstorm</em>, <em>Simulate Heatwave</em>, <em>Flyover Lane Closure</em>, and <em>Reset Twin</em>.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>
+        <span>10. Executive Municipal Scorecards & Reporting</span>
+        <span class="badge badge-hist">Automated Briefings</span>
+      </h3>
+      <p>Automated daily executive briefing aggregating urban mobility health, electrical grid stability, and NAAQS air quality compliance with print/PDF export support.</p>
+    </div>
+
+    <h2>3. Complete REST API Reference</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Method & Endpoint</th>
+          <th>Domain</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>GET /api/v1/traffic/corridors/current</code></td>
+          <td>Traffic</td>
+          <td>Citywide congestion index, average speeds, corridor summaries</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/traffic/predictions</code></td>
+          <td>Traffic / ML</td>
+          <td>15, 30, 60, or 120-minute LightGBM traffic forecasts</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/traffic/cause/{segment_id}</code></td>
+          <td>Explainable AI</td>
+          <td>TreeSHAP 4-category causal attribution breakdown</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/traffic/impact/{segment_id}</code></td>
+          <td>Downstream Impact</td>
+          <td>Queue spillover, alternate routes, fuel & CO2 penalties</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/energy/current</code></td>
+          <td>Energy Grid</td>
+          <td>Active MW across 5 substation zones, frequency, capacity</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/energy/forecast</code></td>
+          <td>Energy / ML</td>
+          <td>24-hour predictive load curve with 95% confidence intervals</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/environment/current</code></td>
+          <td>Environment</td>
+          <td>Live Open-Meteo AQI, PM2.5, PM10, temperature & emissions</td>
+        </tr>
+        <tr>
+          <td><code>POST /api/v1/scenarios/traffic/run</code></td>
+          <td>Simulation</td>
+          <td>Executes What-If traffic closures and surges with deltas</td>
+        </tr>
+        <tr>
+          <td><code>POST /api/v1/scenarios/energy/run</code></td>
+          <td>Simulation</td>
+          <td>Executes What-If heatwave and EV charging scenarios</td>
+        </tr>
+        <tr>
+          <td><code>POST /api/v1/assistant/chat</code></td>
+          <td>AI Assistant</td>
+          <td>Grounded natural language municipal Q&A with citations</td>
+        </tr>
+        <tr>
+          <td><code>POST /api/v1/simulation/demo-preset</code></td>
+          <td>Demo Presets</td>
+          <td>1-click injection of TIDEL accident, rainstorm, or heatwave</td>
+        </tr>
+        <tr>
+          <td><code>GET /api/v1/reports/daily</code></td>
+          <td>Audit & Reports</td>
+          <td>Daily municipal briefing scorecard with recommendations</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. Quick Start & Execution</h2>
+    <pre><code># 1. Start FastAPI Backend
+cd backend
+pip install -r requirements.txt
+python -m uvicorn app.main:app --reload --port 8000
+
+# 2. Start Vite React Frontend
+cd frontend
+npm install
+npm run dev</code></pre>
+
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--card-border); font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+      Coimbatore Smart City Digital Twin • Technical Reference Manual • Open Source Cyber-Physical Intelligence
+    </footer>
+  </div>
+</body>
+</html>
